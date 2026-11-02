@@ -58,6 +58,8 @@
   .ink { position: relative; opacity: 0; }
   .ink.in { opacity: 1; animation: ink .16s ease-out; }
   @keyframes ink { from { opacity: 0; top: .3em; } to { opacity: 1; top: 0; } }
+  .slot { position: relative; }
+  .slot .almost { position: absolute; left: 0; top: 0; white-space: nowrap; }
   #insects .ink:not(.in) { display: none; }   /* takes no room until it enters, so the closing quote moves along */
   .strike { transform-origin: left center; transform: rotate(-.1deg) scaleX(0); }
   .strike.in { transform: rotate(-.1deg) scaleX(1); transition: transform .26s cubic-bezier(.4,0,.3,1); }
@@ -198,9 +200,9 @@
   <div class="t big25" style="left:1.5%;top:23.97%;width:82%;height:49.78%"><p>Jack of all trades, master of none</p></div>
 </section>
 
-<!-- 8: on arrival the strike draws left to right, then "the process" writes itself letter by letter -->
+<!-- 8: on arrival the strike draws left to right, then "al(most)" writes itself; a press deletes it backwards and writes "the process" -->
 <section class="slide main" id="process">
-  <div class="t big25" style="left:10.96%;top:23.97%;width:82%;height:49.78%"><p>Jack of all trades, master of none <span class="red letters">the process</span></p></div>
+  <div class="t big25" style="left:10.96%;top:23.97%;width:82%;height:49.78%"><p>Jack of all trades, master of none <span class="slot"><span class="red letters almost">al(most)</span><span class="red letters final">the process</span></span></p></div>
   <div class="line strike" style="left:60.84%;top:49.53%;width:6.57%;height:calc(6 * var(--pt));margin-top:calc(-3 * var(--pt));background:#f14014"></div>
 </section>
 
@@ -492,7 +494,38 @@ document.querySelectorAll('.letters').forEach(el => {
   el.innerHTML = [...el.textContent].map(c => `<span class="ink">${c}</span>`).join('');
 });
 const insects = reveal('insects', (el, i) => 150 + i * 110);          // ms between words
-const process = reveal('process', (el, i) => el.classList.contains('strike') ? 120 : 420 + i * 38);   // strike, then ms between letters
+
+/* ---------- 8: strike, then al(most) on arrival; a press deletes it backwards and writes the process; next press moves on ---------- */
+const process = {
+  strike: document.querySelector('#process .strike'),
+  almost: [...document.querySelectorAll('#process .almost .ink')],
+  final: [...document.querySelectorAll('#process .final .ink')],
+  gap: 38,          // ms between letters
+  timers: [],
+  pressed: false,
+  later(fn, ms) { this.timers.push(setTimeout(fn, ms)); },
+  reset() {
+    this.timers.forEach(clearTimeout); this.timers = [];
+    [this.strike, ...this.almost, ...this.final].forEach(el => el.classList.remove('in'));
+  },
+  enter() {
+    this.reset(); this.pressed = false;
+    this.later(() => this.strike.classList.add('in'), 120);
+    this.almost.forEach((el, i) => this.later(() => el.classList.add('in'), 420 + i * this.gap));
+  },
+  next() {
+    if (this.pressed) return false;
+    this.pressed = true;
+    this.timers.forEach(clearTimeout); this.timers = [];
+    this.strike.classList.add('in');
+    const shown = this.almost.filter(el => el.classList.contains('in')).reverse();
+    shown.forEach((el, i) => this.later(() => el.classList.remove('in'), i * this.gap));
+    const start = shown.length * this.gap + 60;
+    this.final.forEach((el, i) => this.later(() => el.classList.add('in'), start + i * this.gap));
+    return true;
+  },
+  leave() { this.reset(); },
+};
 
 /* ---------- arrows that draw themselves; a step is [what to draw (null = pause), ms, easing] ---------- */
 const drawing = id => {
