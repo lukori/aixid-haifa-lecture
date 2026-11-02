@@ -74,6 +74,10 @@
   .foot { left: 4%; bottom: 6.84%; }
   .date { right: 4%; bottom: 6.84%; }
   .logo { left: 93.72%; top: 7.11%; width: 2.28%; height: 4.44%; }
+  /* slide 1: the upper background copy fades out at its right and bottom edges, so no seam shows */
+  .bg-top { -webkit-mask-image: linear-gradient(to right, #000 96.5%, transparent), linear-gradient(to bottom, #000 92.9%, transparent);
+            mask-image: linear-gradient(to right, #000 96.5%, transparent), linear-gradient(to bottom, #000 92.9%, transparent);
+            -webkit-mask-composite: source-in; mask-composite: intersect; }
   .tnx-site { position: absolute; left: 32%; bottom: 6.84%; width: 36%; text-align: center; line-height: 1.15; font-size: calc(11 * var(--pt)); }
   .tnx-site a { text-decoration: none; }
   .sub { position: absolute; left: 32%; top: 7.38%; width: 36%; text-align: center; line-height: 1.15; }
@@ -98,7 +102,7 @@
 <!-- 1 -->
 <section class="slide main">
   <div class="pic" style="left:-.4%;top:0;width:100.8%;height:100%"><img src="assets/image2.jpg" alt=""></div>
-  <div class="pic" style="left:-5.51%;top:-3.17%;width:100%;height:99.22%"><img src="assets/image2.jpg" alt=""></div>
+  <div class="pic bg-top" style="left:-5.51%;top:-3.17%;width:100%;height:99.22%"><img src="assets/image2.jpg" alt=""></div>
   <div class="pic" style="left:3.06%;top:.55%;width:100%;height:100%;--t:.0693;--b:-.0693"><img src="assets/image3_letters.png" alt=""></div>
   <div class="pic" style="left:13.12%;top:85.5%;width:7.27%;height:8.5%"><img src="assets/logo_hit.png" alt=""></div>
   <div class="pic" style="left:85.51%;top:89.75%;width:7.59%;height:4.25%"><img src="assets/logo_aixid.png" alt=""></div>
