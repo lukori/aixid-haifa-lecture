@@ -26,6 +26,7 @@
   .pic svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   #here path { fill: none; stroke: #e5381f; stroke-width: 5; stroke-dasharray: 1 1; }
+  #sentence line { stroke: #000; stroke-width: 4.2; stroke-dasharray: 1 1; }
 
   /* text box, vertically centered like the deck's title placeholder */
   .t { position: absolute; display: flex; flex-direction: column; justify-content: center; text-align: center; }
@@ -77,9 +78,33 @@
   </div>
 </section>
 
-<!-- 3 -->
-<section class="slide main">
-  <div class="pic" style="left:17.65%;top:17.65%;width:64.7%;height:65.21%"><img src="assets/image4.png" alt=""></div>
+<!-- 3: draws itself on arrival, word by word: how not to lose your legs when you learn to fly -->
+<section class="slide main" id="sentence">
+  <div class="pic" style="left:17.65%;top:17.65%;width:64.7%;height:65.21%">
+    <svg viewBox="0 0 2048 1161">
+      <line pathLength="1" x1="740.5" y1="86" x2="1520" y2="436"/>
+      <line pathLength="1" x1="1621.8" y1="504.5" x2="1934.8" y2="994.5"/>
+      <line pathLength="1" x1="1965.4" y1="994.1" x2="1982" y2="565"/>
+      <line pathLength="1" x1="1892.9" y1="557.7" x2="1334.4" y2="794.9"/>
+      <line pathLength="1" x1="1153" y1="812.1" x2="154" y2="577"/>
+      <line pathLength="1" x1="91.6" y1="510.4" x2="518.9" y2="325.7"/>
+      <line pathLength="1" x1="592.8" y1="325.7" x2="825" y2="1059.3"/>
+      <line pathLength="1" x1="869.5" y1="1059.3" x2="1334.1" y2="220"/>
+      <line pathLength="1" x1="1276.7" y1="220.2" x2="70.7" y2="919.4"/>
+      <line pathLength="1" x1="114" y1="967.5" x2="1519" y2="967.6"/>
+      <image href="assets/words/how.png" x="652" y="5" width="143" height="55"/>
+      <image href="assets/words/not.png" x="1543" y="431" width="108" height="53"/>
+      <image href="assets/words/to1.png" x="1935" y="1011" width="62" height="53"/>
+      <image href="assets/words/lose.png" x="1919" y="489" width="129" height="55"/>
+      <image href="assets/words/your.png" x="1172" y="815" width="150" height="56"/>
+      <image href="assets/words/legs.png" x="0" y="526" width="131" height="67"/>
+      <image href="assets/words/when.png" x="531" y="231" width="164" height="55"/>
+      <image href="assets/words/you.png" x="787" y="1099" width="121" height="56"/>
+      <image href="assets/words/learn.png" x="1283" y="145" width="156" height="55"/>
+      <image href="assets/words/to2.png" x="13" y="933" width="63" height="53"/>
+      <image href="assets/words/fly.png" x="1569" y="946" width="83" height="69"/>
+    </svg>
+  </div>
 </section>
 
 <!-- 4 -->
@@ -259,8 +284,8 @@ document.querySelectorAll('.pic img').forEach(i => i.decode().catch(() => {})); 
 /* ---------- 2: first press draws you → are → here, next press moves on ---------- */
 const here = {
   rings: [...document.querySelectorAll('#here path')],
-  draw: 750,      // ms to draw each ring
-  gap: 200,       // ms between rings
+  draw: 550,      // ms to draw each ring
+  gap: 175,       // ms between rings (3 rings = 2 seconds in all)
   timers: [], started: false,
   enter() { this.reset(); },
   next() {
@@ -279,6 +304,53 @@ const here = {
       ring.style.transition = 'none'; ring.style.strokeDashoffset = 1; ring.style.visibility = 'hidden';
       ring.getBoundingClientRect();   // apply the reset before the next draw starts
     });
+  },
+  leave() { this.reset(); },
+};
+
+/* ---------- 3: "how" is there on arrival, then line → word → line, on its own; a press mid-way completes it ---------- */
+const sentence = {
+  lines: [...document.querySelectorAll('#sentence line')],
+  words: [...document.querySelectorAll('#sentence image')],
+  speed: 3.2,     // line drawing speed, in image pixels per ms
+  wordIn: 120,    // ms for a word to appear
+  start: 300,     // ms before the first line
+  timers: [], running: false,
+  enter() {
+    this.reset();
+    this.words[0].style.opacity = 1;
+    this.running = true;
+    let t = this.start;
+    this.lines.forEach((line, i) => {
+      const dur = line.getTotalLength() / this.speed, word = this.words[i + 1];
+      this.timers.push(setTimeout(() => {
+        line.style.visibility = 'visible';
+        line.style.transition = `stroke-dashoffset ${dur}ms linear`;
+        line.style.strokeDashoffset = 0;
+      }, t));
+      t += dur;
+      this.timers.push(setTimeout(() => {
+        word.style.transition = `opacity ${this.wordIn}ms ease`;
+        word.style.opacity = 1;
+      }, t));
+      t += this.wordIn;
+    });
+    this.timers.push(setTimeout(() => { this.running = false; }, t));
+  },
+  next() {
+    if (!this.running) return false;
+    this.timers.forEach(clearTimeout); this.timers = []; this.running = false;
+    this.lines.forEach(line => { line.style.transition = 'none'; line.style.strokeDashoffset = 0; line.style.visibility = 'visible'; });
+    this.words.forEach(word => { word.style.transition = 'none'; word.style.opacity = 1; });
+    return true;
+  },
+  reset() {
+    this.timers.forEach(clearTimeout); this.timers = []; this.running = false;
+    this.lines.forEach(line => {
+      line.style.transition = 'none'; line.style.strokeDashoffset = 1; line.style.visibility = 'hidden';
+      line.getBoundingClientRect();   // apply the reset before the next draw starts
+    });
+    this.words.forEach(word => { word.style.transition = 'none'; word.style.opacity = 0; });
   },
   leave() { this.reset(); },
 };
@@ -306,7 +378,7 @@ const film = {
   leave() { filmVideo.pause(); },
 };
 
-const behaviours = { here, loop, film };
+const behaviours = { here, sentence, loop, film };
 
 function go(n) {
   n = Math.max(0, Math.min(slides.length - 1, n));
