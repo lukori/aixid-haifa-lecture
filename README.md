@@ -1,6 +1,6 @@
 # AIxID - i want to be there
 
-A 15-minute talk by Luka Or (Haifa, 3.11.26), converted from `Luka or_AIxID_e.pptx` to one HTML page. Slides 13-14 (photos) were added after Level 1, so from there on slide numbers are 2 higher than in the pptx.
+A 15-minute talk by Luka Or (Haifa, 3.11.26), converted from `Luka or_AIxID_e.pptx` to one HTML page. Slides 13-14 (photos) were added after Level 1, and slide 22 of the pptx was split in two. From slide 14 of the pptx to 21, numbers here are 2 higher. The rest runs: 24 Building Our Own Tools for Design (first half of pptx 22), 25 pptx 23, 26 pptx 26, 27 pptx 27, 28 Social Project Based Learning (second half of pptx 22), 29 pptx 24, 30 pptx 25, 31 pptx 28, 32 pptx 29.
 
 Open `index.html` in Chrome (works offline), press **F** for full screen.
 
@@ -12,10 +12,10 @@ Open `index.html` in Chrome (works offline), press **F** for full screen.
 - Slide 12 (Level 1) is the still illustration with its arrow, no animation. It used to draw the arrow on arrival: 150 ms wait, black 300 ms, 200 ms pause, orange 170 ms, head 70 ms; that version is in the git history, before commit "Slide 12 still".
 - Slide 16 (slide 14 in the pptx) starts with "It's all about you". Presses show "It's not magic" and "S#@IT in S#@IT out" with no animation, the next draws the arrow right to left, and the next moves on. Its text is drawn as shapes (Helvetica Neue outlines), so it looks the same on any computer.
 - Slide 22 (Level 2, slide 20 in the pptx) starts with only the box and crank. On arrival the crank turns once, then the spring pops out with the plate on top, overshoots and settles. `turn`, `bounce` and `damping` in the `jack` object set the feel.
-- Slide 23 (21 in the pptx): on arrival the arrow draws left to right, then the dot appears. Slide 24 (22 in the pptx) starts with "Building Our Own Tools for Design"; the first press changes it to "Social Project Based Learning", the next moves on.
-- Slide 25 loops silently on its own. Slide 27 waits: the first press plays the film with sound, the next moves on. Moving the mouse on slide 27 shows a timeline at the bottom: click or drag it to jump, with no effect on the slide count; it hides after 1.5 seconds without movement, so a clicker never shows it.
-- Links on slides 25, 28 and 29 open in a new tab and need internet. On 28 and 29 a click on an image opens its link too, so on 28, where the image fills the slide, move on with the keyboard or clicker. Closing the tab returns to the same slide; full screen may need F again.
-- Slide 29 (27 in the pptx) has three images with links: AI Photo Studio, Image to Hand Study Sketch and sphericon. The row runs between the left and right margins of the slide, and each caption sits under the left edge of its image.
+- Slide 23 (21 in the pptx): on arrival the arrow draws left to right, then the dot appears.
+- Slide 25 loops silently on its own. Slide 30 waits: the first press plays the film with sound, the next moves on. Moving the mouse on slide 30 shows a timeline at the bottom: click or drag it to jump, with no effect on the slide count; it hides after 1.5 seconds without movement, so a clicker never shows it.
+- Links on slides 25, 26 and 27 open in a new tab and need internet. On 26 and 27 a click on an image opens its link too, so on 26, where the image fills the slide, move on with the keyboard or clicker. Closing the tab returns to the same slide; full screen may need F again.
+- Slide 27 (27 in the pptx) has three images with links: AI Photo Studio, Image to Hand Study Sketch and sphericon. The row runs between the left and right margins of the slide, and each caption sits under the left edge of its image.
 - `#N` in the address opens slide N.
 
-`assets/` holds the deck's original images and videos. The film on slide 27 comes from the copy embedded in the pptx, not a YouTube stream; it was re-encoded (keyframe every 2 seconds, no B-frames) after one report of audio playing over a frozen first frame, which did not reproduce in testing.
+`assets/` holds the deck's original images and videos. The film on slide 30 comes from the copy embedded in the pptx, not a YouTube stream; it was re-encoded (keyframe every 2 seconds, no B-frames) after one report of audio playing over a frozen first frame, which did not reproduce in testing.

@@ -50,9 +50,6 @@
   #tools .arrow.in { width: 69.3%; visibility: visible; transition: width .7s cubic-bezier(.35,0,.35,1); }
   #tools .dot { opacity: 0; transform: scale(.4); }
   #tools .dot.in { opacity: 1; transform: none; transition: opacity .12s ease-out, transform .18s cubic-bezier(.2,1.6,.4,1); }
-  #social .second { opacity: 0; }
-  #social.swapped .first { opacity: 0; transition: opacity .2s ease; }
-  #social.swapped .second { opacity: 1; transition: opacity .2s ease; }
   #jack-spring, #jack-arm { fill: none; stroke: #2b2b2b; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
   #jack-plate { fill: #e5381f; }
   #jack-grip { fill: #2b2b2b; }
@@ -321,12 +318,11 @@
   <div class="dot" style="left:78.56%;top:41.92%;width:4.2%;height:7.46%;background:#f14014"></div>
 </section>
 
-<!-- 24: starts with the first line; a press changes it to the second -->
-<section class="slide main" id="social">
+<!-- 24: Building Our Own Tools for Design -->
+<section class="slide main">
   <div class="sub">you teach - you learn</div>
-  <div class="t first" style="left:8.33%;top:59.18%;width:83.33%;height:10.77%;font-size:calc(24 * var(--pt))"><p>Building Our Own Tools for Design</p></div>
-  <div class="t second" style="left:8.33%;top:59.18%;width:83.33%;height:10.77%;font-size:calc(24 * var(--pt))"><p><span class="red">Social</span> Project Based Learning</p></div>
-  <div class="pic" style="left:27.88%;top:34.19%;width:44.17%;height:24.74%"><img src="assets/image17.png" alt=""></div>
+  <div class="t" style="left:8.33%;top:59.18%;width:83.33%;height:10.77%;font-size:calc(24 * var(--pt))"><p>Building Our Own Tools for Design</p></div>
+    <div class="pic" style="left:27.88%;top:34.19%;width:44.17%;height:24.74%"><img src="assets/image17.png" alt=""></div>
 </section>
 
 <!-- 25: screen recording, loops by itself -->
@@ -335,24 +331,13 @@
   <div style="position:absolute;left:67.95%;top:92.4%;width:36%;color:#fff;line-height:1.15">AIxID <a href="http://aixid.org/" target="_blank" rel="noopener">link</a></div>
 </section>
 
-<!-- 26 -->
-<section class="slide main">
-  <div class="pic" style="left:0;top:2.54%;width:100.12%;height:95.87%;--l:.00774;--t:.13222;--r:.0224;--b:.03193"><img src="assets/image19.png" alt=""></div>
-</section>
-
-<!-- 27: the YouTube film (local copy): first press plays with sound, next press moves on -->
-<section class="slide main" id="film">
-  <div class="pic" style="left:0;top:0;width:100%;height:100%;background:#000"><video src="assets/aixid_app.mp4?v=2" playsinline preload="auto"></video></div>
-  <div id="film-bar"><div id="film-track"><div id="film-fill"></div></div><div id="film-time"></div></div>
-</section>
-
-<!-- 28: a click on the image opens the link in a new tab -->
+<!-- 26: a click on the image opens the link in a new tab -->
 <section class="slide main">
   <div class="pic" style="left:-27.55%;top:-40.43%;width:152.79%;height:147.84%;--t:.12915"><a href="https://waco-design.netlify.app/#playground" target="_blank" rel="noopener"><img src="assets/image21.png" alt=""></a></div>
   <div class="small-link" style="position:absolute;left:64.56%;top:93.91%;width:29.73%;text-align:right;line-height:1.15"><a href="https://waco-design.netlify.app/#playground" target="_blank" rel="noopener">SHIFT</a></div>
 </section>
 
-<!-- 29: a click on an image opens its link in a new tab -->
+<!-- 27: a click on an image opens its link in a new tab -->
 <section class="slide main">
   <div class="sub">you teach - you learn</div>
   <div class="pic" style="left:35.585%;top:24.92%;width:29.73%;height:52.45%;--r:.49382"><a href="https://aistudio.google.com/apps/e56afd1a-a8aa-4dad-a75b-f3f9068a4b24?fullscreenApplet=true&amp;showAssistant=true&amp;showPreview=true" target="_blank" rel="noopener"><img src="assets/image22.png" alt=""></a></div>
@@ -363,12 +348,30 @@
   <div class="small-link" style="position:absolute;left:66.85%;top:78.81%;width:29.15%;line-height:1.15;color:#a6a6a6"><a href="https://aistudio.google.com/apps/drive/1onL4KRWL7RAOjuc4EeFwf4TN-Gxim8TC?fullscreenApplet=true&amp;showAssistant=true&amp;showPreview=true" target="_blank" rel="noopener">sphericon</a></div>
 </section>
 
-<!-- 30 -->
+<!-- 28: Social Project Based Learning -->
+<section class="slide main">
+  <div class="sub">you teach - you learn</div>
+    <div class="t" style="left:8.33%;top:59.18%;width:83.33%;height:10.77%;font-size:calc(24 * var(--pt))"><p><span class="red">Social</span> Project Based Learning</p></div>
+  <div class="pic" style="left:27.88%;top:34.19%;width:44.17%;height:24.74%"><img src="assets/image17.png" alt=""></div>
+</section>
+
+<!-- 29 -->
+<section class="slide main">
+  <div class="pic" style="left:0;top:2.54%;width:100.12%;height:95.87%;--l:.00774;--t:.13222;--r:.0224;--b:.03193"><img src="assets/image19.png" alt=""></div>
+</section>
+
+<!-- 30: the YouTube film (local copy): first press plays with sound, next press moves on -->
+<section class="slide main" id="film">
+  <div class="pic" style="left:0;top:0;width:100%;height:100%;background:#000"><video src="assets/aixid_app.mp4?v=2" playsinline preload="auto"></video></div>
+  <div id="film-bar"><div id="film-track"><div id="film-fill"></div></div><div id="film-time"></div></div>
+</section>
+
+<!-- 31 -->
 <section class="slide main">
   <div class="pic" style="left:31.23%;top:4.57%;width:37.54%;height:96.29%;--l:.31409;--r:.29608"><img src="assets/image24.jpg" alt=""></div>
 </section>
 
-<!-- 31 -->
+<!-- 32 -->
 <section class="slide main">
   <div class="t big30 red" style="left:9%;top:25.34%;width:82%;height:49.78%"><p>tnx</p></div>
 </section>
@@ -496,17 +499,6 @@ const flow = {
 
 const tools = reveal('tools', el => el.classList.contains('arrow') ? 150 : 850);   // arrow, then the dot when it ends
 
-/* ---------- 24: first press changes the line, next press moves on ---------- */
-const social = {
-  el: document.getElementById('social'),
-  enter() { this.el.classList.remove('swapped'); },
-  next() {
-    if (this.el.classList.contains('swapped')) return false;
-    this.el.classList.add('swapped');
-    return true;
-  },
-};
-
 /* ---------- 22: the crank turns once, then the spring pops out and settles ---------- */
 const jack = {
   delay: 100,     // ms before the crank starts
@@ -612,7 +604,7 @@ const loop = {
   leave() { loopVideo.pause(); },
 };
 
-/* ---------- 27: first press plays, next press moves on ---------- */
+/* ---------- 30: first press plays, next press moves on ---------- */
 const filmVideo = document.querySelector('#film video');
 filmVideo.volume = 0.8;
 const film = {
@@ -654,7 +646,7 @@ filmBar.addEventListener('pointerup', () => {
 });
 filmBar.addEventListener('click', e => e.stopPropagation());
 
-const behaviours = { here, sentence, insects, process, trajectory, flow, jack, tools, social, loop, film };
+const behaviours = { here, sentence, insects, process, trajectory, flow, jack, tools, loop, film };
 
 function go(n) {
   n = Math.max(0, Math.min(slides.length - 1, n));
