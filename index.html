@@ -34,6 +34,9 @@
   #trajectory path.orange { stroke-width: 7.5; }
   #level1 path { stroke-width: 4.5; }
   #level1 path.orange { stroke-width: 5.1; }
+  #flow-arrow path { stroke-width: 3; }
+  #flow text { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 34px; fill: #2b2b2b; text-anchor: middle; }
+  #flow .step:not(.in) { visibility: hidden; }
 
   /* text that enters piece by piece */
   .ink { position: relative; opacity: 0; }
@@ -214,9 +217,35 @@
   <div class="pic" style="left:35.15%;top:56.56%;width:29.69%;height:30.8%"><img src="assets/image8.png" alt=""></div>
 </section>
 
-<!-- 16 -->
-<section class="slide main">
-  <div class="pic" style="left:6.82%;top:25.15%;width:86.37%;height:49.7%;--b:.42453"><img src="assets/image9.png" alt=""></div>
+<!-- 16: each press shows the next item as is; the fourth draws the arrow right to left -->
+<section class="slide main" id="flow">
+  <div class="pic" style="left:6.82%;top:25.15%;width:86.37%;height:49.7%">
+    <svg viewBox="0 0 1600 517.9">
+      <g class="step">
+        <text x="330" y="138">It's all about</text><text x="330" y="178">you</text>
+        <g transform="translate(330 268)" stroke="#2b2b2b" stroke-width="3" fill="none" stroke-linecap="round">
+          <circle r="38"/><circle cx="-13" cy="-9" r="2.6" fill="#2b2b2b" stroke="none"/><circle cx="13" cy="-9" r="2.6" fill="#2b2b2b" stroke="none"/>
+          <path d="M-18 8Q0 28 18 8"/>
+        </g>
+      </g>
+      <g class="step">
+        <text x="800" y="138">It's not</text><text x="800" y="178">magic</text>
+        <g transform="translate(800 268) scale(1.3)" stroke="#e5381f" fill="none" stroke-linecap="round">
+          <line x1="-14" y1="30" x2="10" y2="-26" stroke-width="10" stroke-linecap="butt"/>
+          <path stroke-width="3.5" d="M14 -40L19 -52M26 -32L38 -38M2 -42L-4 -54M30 -20L43 -20"/>
+        </g>
+      </g>
+      <g class="step">
+        <text x="1270" y="138">S#@IT in</text><text x="1270" y="178">S#@IT out</text>
+        <path transform="translate(1270 268)" stroke="#2b2b2b" stroke-width="3" fill="none" stroke-linejoin="round" d="M-5,-38 Q-6 -49 3 -56 Q3 -46 5,-38 A14 14 0 0 1 15.32 -14.54 A15 15 0 0 1 30.89 9.15 A15 15 0 1 1 33.00 39.00 L-33,39 A15 15 0 1 1 -30.89 9.15 A15 15 0 0 1 -15.32 -14.54 A14 14 0 0 1 -5.00 -38.00 Z"/>
+      </g>
+      <g class="drawn" id="flow-arrow">
+        <path id="f-arc" pathLength="1" d="M1265 338C1100 505 560 505 352 318"/>
+        <path class="f-head" pathLength="1" d="M352 318L360 340.6"/>
+        <path class="f-head" pathLength="1" d="M352 318L375.4 323.5"/>
+      </g>
+    </svg>
+  </div>
 </section>
 
 <!-- 17 -->
@@ -420,6 +449,23 @@ const level1 = {
   leave() { this.draw.reset(); },
 };
 
+/* ---------- 16: each press shows the next item with no animation, then one more draws the arrow ---------- */
+const flow = {
+  items: [...document.querySelectorAll('#flow .step')],
+  draw: drawing('flow-arrow'),
+  arrow: [['#f-arc', 450, 'cubic-bezier(.35,0,.35,1)'], ['.f-head', 70, 'ease-out']],
+  pressed: 0,
+  enter() { this.leave(); },
+  next() {
+    if (this.pressed > this.items.length) return false;
+    if (this.pressed < this.items.length) this.items[this.pressed].classList.add('in');
+    else this.draw.play(this.arrow);
+    this.pressed++;
+    return true;
+  },
+  leave() { this.pressed = 0; this.items.forEach(el => el.classList.remove('in')); this.draw.reset(); },
+};
+
 /* ---------- 3: "how" is there on arrival, then line → word → line, on its own; a press mid-way completes it ---------- */
 const sentence = {
   lines: [...document.querySelectorAll('#sentence line')],
@@ -490,7 +536,7 @@ const film = {
   leave() { filmVideo.pause(); },
 };
 
-const behaviours = { here, sentence, insects, process, trajectory, level1, loop, film };
+const behaviours = { here, sentence, insects, process, trajectory, level1, flow, loop, film };
 
 function go(n) {
   n = Math.max(0, Math.min(slides.length - 1, n));

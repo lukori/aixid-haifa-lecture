@@ -10,6 +10,7 @@ Open `index.html` in Chrome (works offline), press **F** for full screen.
 - Slide 5: "Specialization is for insects." enters word by word on arrival, 110 ms apart. Slide 8: on arrival the strike draws left to right, then "the process" writes itself letter by letter, 38 ms apart. Both timings are in the `reveal` lines.
 - Slide 10 starts with no arrows. The first press draws the short black arrow, the second the long one, black, a 0.2 second pause, then orange; each stays. The next moves on. Timings are in `presses` in the `trajectory` object.
 - Slide 12 (Level 1) draws its arrow on arrival: black, a 0.2 second pause, then orange. Timings are in `steps` in the `level1` object.
+- Slide 16 (slide 14 in the pptx) starts empty. Three presses show "It's all about you", "It's not magic" and "S#@IT in S#@IT out" with no animation, the fourth draws the arrow right to left, and the next moves on. Its text uses Helvetica Neue, so it can look slightly different on a machine without it.
 - Slide 25 loops silently on its own. Slide 27 waits: the first press plays the film with sound, the next moves on.
 - Links on slides 25, 28 and 29 open in a new tab and need internet.
 - `#N` in the address opens slide N.
