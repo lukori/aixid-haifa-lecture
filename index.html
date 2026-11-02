@@ -8,7 +8,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; overflow: hidden; background: #000; }
   body { display: grid; place-items: center; font-family: Arial, Helvetica, sans-serif; color: #000; user-select: none; }
-  body.idle { cursor: none; }
+  body.idle, body.idle a { cursor: none; }
 
   /* the 16:9 slide; all positions are % of it and --pt is one PowerPoint point */
   #stage { position: relative; width: min(100vw, calc(100vh * 16 / 9)); aspect-ratio: 16 / 9;
@@ -37,6 +37,13 @@
   #flow-arrow path { stroke-width: 3; }
   #flow .label { fill: #2b2b2b; }
   #flow .step:not(.in) { visibility: hidden; }
+  #tools .arrow { width: 0; visibility: hidden; }
+  #tools .arrow.in { width: 69.3%; visibility: visible; transition: width .7s cubic-bezier(.35,0,.35,1); }
+  #tools .dot { opacity: 0; transform: scale(.4); }
+  #tools .dot.in { opacity: 1; transform: none; transition: opacity .12s ease-out, transform .18s cubic-bezier(.2,1.6,.4,1); }
+  #social .second { opacity: 0; }
+  #social.swapped .first { opacity: 0; transition: opacity .2s ease; }
+  #social.swapped .second { opacity: 1; transition: opacity .2s ease; }
   #jack-spring, #jack-arm { fill: none; stroke: #2b2b2b; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
   #jack-plate { fill: #e5381f; }
   #jack-grip { fill: #2b2b2b; }
@@ -298,17 +305,18 @@
   </div>
 </section>
 
-<!-- 23 -->
-<section class="slide main">
+<!-- 23: on arrival the arrow draws left to right, then the dot appears -->
+<section class="slide main" id="tools">
   <div class="pic" style="left:-1.33%;top:-1.67%;width:101.33%;height:103.34%;--l:.0108;--t:.0157;--r:.24956;--b:-.0157"><img src="assets/image16.png" alt=""></div>
-  <div class="arrow" style="left:16.35%;top:88.99%;width:69.3%"></div>
+  <div class="arrow" style="left:16.35%;top:88.99%"></div>
   <div class="dot" style="left:78.56%;top:41.92%;width:4.2%;height:7.46%;background:#f14014"></div>
 </section>
 
-<!-- 24 -->
-<section class="slide main">
+<!-- 24: starts with the first line; a press changes it to the second -->
+<section class="slide main" id="social">
   <div class="sub">you teach - you learn</div>
-  <div class="t" style="left:8.33%;top:59.18%;width:83.33%;height:10.77%;font-size:calc(24 * var(--pt))"><p><span class="red">Social</span> Project Based Learning</p></div>
+  <div class="t first" style="left:8.33%;top:59.18%;width:83.33%;height:10.77%;font-size:calc(24 * var(--pt))"><p>Building Our Own Tools for Design</p></div>
+  <div class="t second" style="left:8.33%;top:59.18%;width:83.33%;height:10.77%;font-size:calc(24 * var(--pt))"><p><span class="red">Social</span> Project Based Learning</p></div>
   <div class="pic" style="left:27.88%;top:34.19%;width:44.17%;height:24.74%"><img src="assets/image17.png" alt=""></div>
 </section>
 
@@ -328,17 +336,17 @@
   <div class="pic" style="left:.03%;top:.06%;width:100%;height:100%"><video src="assets/aixid_app.mp4" poster="assets/image20.png" playsinline preload="auto"></video></div>
 </section>
 
-<!-- 28 -->
+<!-- 28: a click on the image opens the link in a new tab -->
 <section class="slide main">
-  <div class="pic" style="left:-27.55%;top:-40.43%;width:152.79%;height:147.84%;--t:.12915"><img src="assets/image21.png" alt=""></div>
+  <div class="pic" style="left:-27.55%;top:-40.43%;width:152.79%;height:147.84%;--t:.12915"><a href="https://waco-design.netlify.app/#playground" target="_blank" rel="noopener"><img src="assets/image21.png" alt=""></a></div>
   <div class="small-link" style="position:absolute;left:64.56%;top:93.91%;width:29.73%;text-align:right;line-height:1.15"><a href="https://waco-design.netlify.app/#playground" target="_blank" rel="noopener">SHIFT</a></div>
 </section>
 
-<!-- 29 -->
+<!-- 29: a click on an image opens its link in a new tab -->
 <section class="slide main">
   <div class="sub">you teach - you learn</div>
-  <div class="pic" style="left:51.2%;top:24.92%;width:29.73%;height:52.45%;--r:.49382"><img src="assets/image22.png" alt=""></div>
-  <div class="pic" style="left:19.66%;top:24.92%;width:30.19%;height:52.45%"><img src="assets/image23.png" alt=""></div>
+  <div class="pic" style="left:51.2%;top:24.92%;width:29.73%;height:52.45%;--r:.49382"><a href="https://aistudio.google.com/apps/e56afd1a-a8aa-4dad-a75b-f3f9068a4b24?fullscreenApplet=true&amp;showAssistant=true&amp;showPreview=true" target="_blank" rel="noopener"><img src="assets/image22.png" alt=""></a></div>
+  <div class="pic" style="left:19.66%;top:24.92%;width:30.19%;height:52.45%"><a href="https://aistudio.google.com/apps/128e22f1-9e68-417c-9b1c-d8d50ea510ab?fullscreenApplet=true&amp;showAssistant=true&amp;showPreview=true" target="_blank" rel="noopener"><img src="assets/image23.png" alt=""></a></div>
   <div class="small-link" style="position:absolute;left:51.2%;top:78.81%;width:29.73%;text-align:right;line-height:1.15;color:#a6a6a6"><a href="https://aistudio.google.com/apps/e56afd1a-a8aa-4dad-a75b-f3f9068a4b24?fullscreenApplet=true&amp;showAssistant=true&amp;showPreview=true" target="_blank" rel="noopener">Image to Hand Study Sketch</a></div>
   <div class="small-link" style="position:absolute;left:19.8%;top:78.81%;width:29.73%;line-height:1.15;color:#a6a6a6"><a href="https://aistudio.google.com/apps/128e22f1-9e68-417c-9b1c-d8d50ea510ab?fullscreenApplet=true&amp;showAssistant=true&amp;showPreview=true" target="_blank" rel="noopener">AI Photo Studio</a></div>
 </section>
@@ -398,9 +406,9 @@ const here = {
   leave() { this.reset(); },
 };
 
-/* ---------- 5 and 8: pieces enter on arrival; at(el, i) says when, in ms ---------- */
+/* ---------- 5, 8 and 23: pieces enter on arrival; at(el, i) says when, in ms ---------- */
 const reveal = (id, at) => {
-  const els = [...document.querySelectorAll(`#${id} .ink, #${id} .strike`)];
+  const els = [...document.querySelectorAll(`#${id} .ink, #${id} .strike, #${id} .arrow, #${id} .dot`)];
   let timers = [];
   const reset = () => { timers.forEach(clearTimeout); timers = []; els.forEach(el => el.classList.remove('in')); };
   return {
@@ -480,6 +488,19 @@ const flow = {
     return true;
   },
   leave() { this.pressed = 0; this.items.forEach(el => el.classList.remove('in')); this.draw.reset(); },
+};
+
+const tools = reveal('tools', el => el.classList.contains('arrow') ? 150 : 850);   // arrow, then the dot when it ends
+
+/* ---------- 24: first press changes the line, next press moves on ---------- */
+const social = {
+  el: document.getElementById('social'),
+  enter() { this.el.classList.remove('swapped'); },
+  next() {
+    if (this.el.classList.contains('swapped')) return false;
+    this.el.classList.add('swapped');
+    return true;
+  },
 };
 
 /* ---------- 22: the crank turns once, then the spring pops out and settles ---------- */
@@ -603,7 +624,7 @@ const film = {
   leave() { filmVideo.pause(); },
 };
 
-const behaviours = { here, sentence, insects, process, trajectory, level1, flow, jack, loop, film };
+const behaviours = { here, sentence, insects, process, trajectory, level1, flow, jack, tools, social, loop, film };
 
 function go(n) {
   n = Math.max(0, Math.min(slides.length - 1, n));

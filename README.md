@@ -12,8 +12,9 @@ Open `index.html` in Chrome (works offline), press **F** for full screen.
 - Slide 12 (Level 1) draws its arrow on arrival: black, a 0.2 second pause, then orange. Timings are in `steps` in the `level1` object.
 - Slide 16 (slide 14 in the pptx) starts with "It's all about you". Presses show "It's not magic" and "S#@IT in S#@IT out" with no animation, the next draws the arrow right to left, and the next moves on. Its text is drawn as shapes (Helvetica Neue outlines), so it looks the same on any computer.
 - Slide 22 (Level 2, slide 20 in the pptx) starts with only the box and crank. On arrival the crank turns once, then the spring pops out with the plate on top, overshoots and settles. `turn`, `bounce` and `damping` in the `jack` object set the feel.
+- Slide 23 (21 in the pptx): on arrival the arrow draws left to right, then the dot appears. Slide 24 (22 in the pptx) starts with "Building Our Own Tools for Design"; the first press changes it to "Social Project Based Learning", the next moves on.
 - Slide 25 loops silently on its own. Slide 27 waits: the first press plays the film with sound, the next moves on.
-- Links on slides 25, 28 and 29 open in a new tab and need internet.
+- Links on slides 25, 28 and 29 open in a new tab and need internet. On 28 and 29 a click on an image opens its link too, so on 28, where the image fills the slide, move on with the keyboard or clicker. Closing the tab returns to the same slide; full screen may need F again.
 - `#N` in the address opens slide N.
 
 `assets/` holds the deck's original images and videos. The film on slide 27 is the copy embedded in the pptx, not a YouTube stream.
