@@ -1,0 +1,7 @@
+# Only the deck itself is published; the source pptx and pdf stay local.
+/*
+!/index.html
+!/assets/
+!/README.md
+!/.gitignore
+.DS_Store
