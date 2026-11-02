@@ -27,6 +27,9 @@
 
   #here path { fill: none; stroke: #e5381f; stroke-width: 5; stroke-dasharray: 1 1; }
   #sentence line { stroke: #000; stroke-width: 4.2; stroke-dasharray: 1 1; }
+  #trajectory circle { fill: #2b2b2b; }
+  #trajectory path { fill: none; stroke: #2b2b2b; stroke-width: 6.5; stroke-linecap: round; stroke-dasharray: 1 1; }
+  #trajectory path.orange { stroke: #e5381f; stroke-width: 7.5; }
 
   /* text that enters piece by piece */
   .ink { position: relative; opacity: 0; }
@@ -155,104 +158,126 @@
 </section>
 
 <!-- 10 -->
-<section class="slide main">
-  <div class="pic" style="left:14.21%;top:16.63%;width:61.55%;height:66.73%;--l:-.14752;--r:-.14765"><img src="assets/image6.png" alt=""></div>
+<section class="slide">
+  <div class="pic" style="left:0;top:0;width:100.88%;height:100%"><img src="assets/pencil_flower.jpg" alt=""></div>
 </section>
 
 <!-- 11 -->
+<section class="slide">
+  <div class="pic" style="left:0;top:0;width:100.88%;height:100%"><img src="assets/spinner_hands.jpg" alt=""></div>
+</section>
+
+<!-- 12: first press draws the short arrow, second press the long one, black then orange -->
+<section class="slide main" id="trajectory">
+  <div class="pic" style="left:14.21%;top:16.63%;width:61.55%;height:66.73%;--l:-.14752;--r:-.14765">
+    <img src="assets/image6_base.png" alt="">
+    <svg viewBox="-276.6 0 2428.5 1481">
+      <circle id="t-dot" cx="683" cy="910" r="13"/>
+      <path id="t-hop" pathLength="1" d="M683 910C651 559.4 1030.3 641.2 1027 1140"/>
+      <path class="t-hop-head" pathLength="1" d="M1027 1140L998.5 1092"/>
+      <path class="t-hop-head" pathLength="1" d="M1027 1140L1055.5 1092"/>
+      <path id="t-jump" pathLength="1" d="M683 910C639.9 60.8 1390.1 -52.2 1392 463"/>
+      <path id="t-launch" class="orange" pathLength="1" d="M1392 472L1872 3"/>
+      <path class="t-launch-head orange" pathLength="1" d="M1872 3L1812 18"/>
+      <path class="t-launch-head orange" pathLength="1" d="M1872 3L1856 61"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 13 -->
 <section class="slide main">
   <div class="t big30" style="left:9%;top:25.34%;width:82%;height:49.78%"><p>these are tools</p></div>
 </section>
 
-<!-- 12 -->
+<!-- 14 -->
 <section class="slide main">
   <div class="sub">you do - you learn</div>
   <div class="pic" style="left:7.11%;top:10.87%;width:85.78%;height:85.78%"><img src="assets/image7.png" alt=""></div>
 </section>
 
-<!-- 13 -->
+<!-- 15 -->
 <section class="slide main">
   <div class="sub">you do - you learn</div>
   <div class="t" style="left:9%;top:15.29%;width:82%;height:49.78%;font-size:calc(18 * var(--pt));line-height:1.4"><p><span class="red">Paradox:</span>The better the tools become, <br>the stronger foundation and skill you need to truly use them</p></div>
   <div class="pic" style="left:35.15%;top:56.56%;width:29.69%;height:30.8%"><img src="assets/image8.png" alt=""></div>
 </section>
 
-<!-- 14 -->
+<!-- 16 -->
 <section class="slide main">
   <div class="pic" style="left:6.82%;top:25.15%;width:86.37%;height:49.7%;--b:.42453"><img src="assets/image9.png" alt=""></div>
 </section>
 
-<!-- 15 -->
+<!-- 17 -->
 <section class="slide main">
   <div class="pic" style="left:6.82%;top:30.1%;width:86.37%;height:39.8%;--t:.54535;--b:-.00618"><img src="assets/image9.png" alt=""></div>
 </section>
 
-<!-- 16 -->
+<!-- 18 -->
 <section class="slide" style="background:url(assets/image10.png) 0 0 / 100% 100%">
   <div class="pic" style="left:0;top:0;width:98.38%;height:100%"><img src="assets/image11.png" alt=""></div>
 </section>
 
-<!-- 17 -->
+<!-- 19 -->
 <section class="slide" style="background:url(assets/image10.png) 0 0 / 100% 100%">
   <div class="pic" style="left:0;top:0;width:98.38%;height:100%"><img src="assets/image11.png" alt=""></div>
   <div class="ring" style="left:41.58%;top:14.35%;width:9.78%;height:15.22%"></div>
   <div class="ring" style="left:82.17%;top:32.83%;width:9.78%;height:15.22%"></div>
 </section>
 
-<!-- 18 -->
+<!-- 20 -->
 <section class="slide">
   <div class="pic" style="left:5.01%;top:13.07%;width:48.64%;height:70.5%"><img src="assets/image12.png" alt=""></div>
   <div class="pic" style="left:55.92%;top:2.96%;width:54.36%;height:94.07%;--l:.23301"><img src="assets/image13.png" alt=""></div>
 </section>
 
-<!-- 19 -->
+<!-- 21 -->
 <section class="slide">
   <div class="pic" style="left:-.63%;top:-27.76%;width:101.27%;height:134.42%"><img src="assets/image14.png" alt=""></div>
 </section>
 
-<!-- 20 -->
+<!-- 22 -->
 <section class="slide main">
   <div class="sub">you teach - you learn</div>
   <div class="pic" style="left:35.9%;top:28.21%;width:28.19%;height:58.8%"><img src="assets/image15.png" alt=""></div>
 </section>
 
-<!-- 21 -->
+<!-- 23 -->
 <section class="slide main">
   <div class="pic" style="left:-1.33%;top:-1.67%;width:101.33%;height:103.34%;--l:.0108;--t:.0157;--r:.24956;--b:-.0157"><img src="assets/image16.png" alt=""></div>
   <div class="arrow" style="left:16.35%;top:88.99%;width:69.3%"></div>
   <div class="dot" style="left:78.56%;top:41.92%;width:4.2%;height:7.46%;background:#f14014"></div>
 </section>
 
-<!-- 22 -->
+<!-- 24 -->
 <section class="slide main">
   <div class="sub">you teach - you learn</div>
   <div class="t" style="left:8.33%;top:59.18%;width:83.33%;height:10.77%;font-size:calc(24 * var(--pt))"><p><span class="red">Social</span> Project Based Learning</p></div>
   <div class="pic" style="left:27.88%;top:34.19%;width:44.17%;height:24.74%"><img src="assets/image17.png" alt=""></div>
 </section>
 
-<!-- 23: screen recording, loops by itself -->
+<!-- 25: screen recording, loops by itself -->
 <section class="slide main" id="loop">
   <div class="pic" style="left:0;top:2.35%;width:100%;height:95.59%"><video src="assets/aixid_loop.mp4" poster="assets/image18.png" muted loop playsinline preload="auto"></video></div>
   <div style="position:absolute;left:67.95%;top:92.4%;width:36%;color:#fff;line-height:1.15">AIxID <a href="http://aixid.org/" target="_blank" rel="noopener">link</a></div>
 </section>
 
-<!-- 24 -->
+<!-- 26 -->
 <section class="slide main">
   <div class="pic" style="left:0;top:2.54%;width:100.12%;height:95.87%;--l:.00774;--t:.13222;--r:.0224;--b:.03193"><img src="assets/image19.png" alt=""></div>
 </section>
 
-<!-- 25: the YouTube film (local copy): first press plays with sound, next press moves on -->
+<!-- 27: the YouTube film (local copy): first press plays with sound, next press moves on -->
 <section class="slide main" id="film">
   <div class="pic" style="left:.03%;top:.06%;width:100%;height:100%"><video src="assets/aixid_app.mp4" poster="assets/image20.png" playsinline preload="auto"></video></div>
 </section>
 
-<!-- 26 -->
+<!-- 28 -->
 <section class="slide main">
   <div class="pic" style="left:-27.55%;top:-40.43%;width:152.79%;height:147.84%;--t:.12915"><img src="assets/image21.png" alt=""></div>
   <div class="small-link" style="position:absolute;left:64.56%;top:93.91%;width:29.73%;text-align:right;line-height:1.15"><a href="https://waco-design.netlify.app/#playground" target="_blank" rel="noopener">SHIFT</a></div>
 </section>
 
-<!-- 27 -->
+<!-- 29 -->
 <section class="slide main">
   <div class="sub">you teach - you learn</div>
   <div class="pic" style="left:51.2%;top:24.92%;width:29.73%;height:52.45%;--r:.49382"><img src="assets/image22.png" alt=""></div>
@@ -261,12 +286,12 @@
   <div class="small-link" style="position:absolute;left:19.8%;top:78.81%;width:29.73%;line-height:1.15;color:#a6a6a6"><a href="https://aistudio.google.com/apps/128e22f1-9e68-417c-9b1c-d8d50ea510ab?fullscreenApplet=true&amp;showAssistant=true&amp;showPreview=true" target="_blank" rel="noopener">AI Photo Studio</a></div>
 </section>
 
-<!-- 28 -->
+<!-- 30 -->
 <section class="slide main">
   <div class="pic" style="left:31.23%;top:4.57%;width:37.54%;height:96.29%;--l:.31409;--r:.29608"><img src="assets/image24.jpg" alt=""></div>
 </section>
 
-<!-- 29 -->
+<!-- 31 -->
 <section class="slide main">
   <div class="t big30 red" style="left:9%;top:25.34%;width:82%;height:49.78%"><p>tnx</p></div>
 </section>
@@ -332,13 +357,46 @@ document.querySelectorAll('.letters').forEach(el => {
 const insects = reveal('insects', (el, i) => 150 + i * 110);          // ms between words
 const process = reveal('process', (el, i) => el.classList.contains('strike') ? 120 : 420 + i * 38);   // strike, then ms between letters
 
+/* ---------- 12: each press draws one arrow left to right and leaves it; after the second press, moves on ---------- */
+const trajectory = {
+  // per press, in order: [what to draw, ms, easing]
+  presses: [
+    [['#t-dot', 0, 'linear'], ['#t-hop', 300, 'cubic-bezier(.35,0,.35,1)'], ['.t-hop-head', 70, 'ease-out']],
+    [['#t-jump', 420, 'cubic-bezier(.6,0,1,1)'], ['#t-launch', 170, 'cubic-bezier(0,0,.4,1)'], ['.t-launch-head', 70, 'ease-out']],
+  ],
+  parts: [...document.querySelectorAll('#trajectory circle, #trajectory path')],
+  pressed: 0, timers: [],
+  enter() { this.reset(); },
+  next() {
+    if (this.pressed >= this.presses.length) return false;
+    let t = 0;
+    this.presses[this.pressed++].forEach(([what, dur, ease]) => {
+      this.timers.push(setTimeout(() => document.querySelectorAll(`#trajectory ${what}`).forEach(el => {
+        el.style.visibility = 'visible';
+        el.style.transition = `stroke-dashoffset ${dur}ms ${ease}`;
+        el.style.strokeDashoffset = 0;
+      }), t));
+      t += dur;
+    });
+    return true;
+  },
+  reset() {
+    this.timers.forEach(clearTimeout); this.timers = []; this.pressed = 0;
+    this.parts.forEach(el => {
+      el.style.transition = 'none'; el.style.strokeDashoffset = 1; el.style.visibility = 'hidden';
+      el.getBoundingClientRect();   // apply the reset before the next draw starts
+    });
+  },
+  leave() { this.reset(); },
+};
+
 /* ---------- 3: "how" is there on arrival, then line → word → line, on its own; a press mid-way completes it ---------- */
 const sentence = {
   lines: [...document.querySelectorAll('#sentence line')],
   words: [...document.querySelectorAll('#sentence image')],
-  speed: 3.2,     // line drawing speed, in image pixels per ms
-  wordIn: 120,    // ms for a word to appear
-  start: 300,     // ms before the first line
+  speed: 6.4,     // line drawing speed, in image pixels per ms
+  wordIn: 60,     // ms for a word to appear
+  start: 150,     // ms before the first line
   timers: [], running: false,
   enter() {
     this.reset();
@@ -379,14 +437,14 @@ const sentence = {
   leave() { this.reset(); },
 };
 
-/* ---------- 23: plays and loops on its own, silently ---------- */
+/* ---------- 25: plays and loops on its own, silently ---------- */
 const loopVideo = document.querySelector('#loop video');
 const loop = {
   enter() { loopVideo.currentTime = 0; loopVideo.play(); },
   leave() { loopVideo.pause(); },
 };
 
-/* ---------- 25: first press plays, next press moves on ---------- */
+/* ---------- 27: first press plays, next press moves on ---------- */
 const filmVideo = document.querySelector('#film video');
 filmVideo.volume = 0.8;
 const film = {
@@ -402,7 +460,7 @@ const film = {
   leave() { filmVideo.pause(); },
 };
 
-const behaviours = { here, sentence, insects, process, loop, film };
+const behaviours = { here, sentence, insects, process, trajectory, loop, film };
 
 function go(n) {
   n = Math.max(0, Math.min(slides.length - 1, n));
