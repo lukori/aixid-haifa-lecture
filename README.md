@@ -15,6 +15,7 @@ Open `index.html` in Chrome (works offline), press **F** for full screen.
 - Slide 23 (21 in the pptx): on arrival the arrow draws left to right, then the dot appears. Slide 24 (22 in the pptx) starts with "Building Our Own Tools for Design"; the first press changes it to "Social Project Based Learning", the next moves on.
 - Slide 25 loops silently on its own. Slide 27 waits: the first press plays the film with sound, the next moves on.
 - Links on slides 25, 28 and 29 open in a new tab and need internet. On 28 and 29 a click on an image opens its link too, so on 28, where the image fills the slide, move on with the keyboard or clicker. Closing the tab returns to the same slide; full screen may need F again.
+- Slide 29 (27 in the pptx) has three images with links: AI Photo Studio, Image to Hand Study Sketch and sphericon. The row runs between the left and right margins of the slide, and each caption sits under the left edge of its image.
 - `#N` in the address opens slide N.
 
 `assets/` holds the deck's original images and videos. The film on slide 27 comes from the copy embedded in the pptx, not a YouTube stream; it was re-encoded (keyframe every 2 seconds, no B-frames) after one report of audio playing over a frozen first frame, which did not reproduce in testing.
