@@ -25,6 +25,15 @@
   .pic video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .pic svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
+  /* the film's timeline: only there while the mouse moves, so the audience doesn't see it */
+  #film-bar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; height: 9%; padding: 0 3%;
+              display: flex; align-items: center; gap: 2%; cursor: pointer; touch-action: none;
+              background: linear-gradient(transparent, rgba(0,0,0,.65)); transition: opacity .2s; }
+  body.idle #film-bar:not(.dragging) { opacity: 0; pointer-events: none; }
+  #film-track { flex: 1; height: calc(3 * var(--pt)); background: rgba(255,255,255,.35); }
+  #film-fill { height: 100%; width: 0; background: #e5381f; }
+  #film-time { color: #fff; font-size: calc(10 * var(--pt)); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
   #here path { fill: none; stroke: #e5381f; stroke-width: 5; stroke-dasharray: 1 1; }
   #sentence line { stroke: #000; stroke-width: 4.2; stroke-dasharray: 1 1; }
   .drawn circle { fill: #2b2b2b; }
@@ -334,6 +343,7 @@
 <!-- 27: the YouTube film (local copy): first press plays with sound, next press moves on -->
 <section class="slide main" id="film">
   <div class="pic" style="left:.03%;top:.06%;width:100%;height:100%"><video src="assets/aixid_app.mp4?v=2" playsinline preload="auto"></video></div>
+  <div id="film-bar"><div id="film-track"><div id="film-fill"></div></div><div id="film-time"></div></div>
 </section>
 
 <!-- 28: a click on the image opens the link in a new tab -->
@@ -607,7 +617,7 @@ const filmVideo = document.querySelector('#film video');
 filmVideo.volume = 0.8;
 const film = {
   started: false,
-  enter() { this.started = false; filmVideo.pause(); filmVideo.currentTime = 0; },
+  enter() { this.started = false; filmVideo.pause(); filmVideo.currentTime = 0; document.body.classList.add('idle'); },
   next() {
     if (this.started) return false;
     this.started = true;
@@ -617,6 +627,32 @@ const film = {
   },
   leave() { filmVideo.pause(); },
 };
+
+/* the timeline: click or drag to jump; it never moves the slide on */
+const filmBar = document.getElementById('film-bar');
+const filmTrack = document.getElementById('film-track');
+const clock = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
+const showFilmTime = t => {
+  const total = filmVideo.duration || 0;
+  document.getElementById('film-fill').style.width = total ? `${t / total * 100}%` : 0;
+  document.getElementById('film-time').textContent = `${clock(t)} / ${clock(total)}`;
+};
+const seekFilm = e => {
+  const box = filmTrack.getBoundingClientRect();
+  const t = Math.max(0, Math.min(1, (e.clientX - box.left) / box.width)) * (filmVideo.duration || 0);
+  filmVideo.currentTime = t;
+  showFilmTime(t);
+};
+['timeupdate', 'loadedmetadata'].forEach(ev => filmVideo.addEventListener(ev, () => {
+  if (!filmBar.classList.contains('dragging')) showFilmTime(filmVideo.currentTime);
+}));
+filmBar.addEventListener('pointerdown', e => { filmBar.setPointerCapture(e.pointerId); filmBar.classList.add('dragging'); seekFilm(e); });
+filmBar.addEventListener('pointermove', e => { if (filmBar.classList.contains('dragging')) seekFilm(e); });
+filmBar.addEventListener('pointerup', () => {
+  filmBar.classList.remove('dragging');
+  if (film.started && filmVideo.paused) filmVideo.play();   // jumped back after the film had ended
+});
+filmBar.addEventListener('click', e => e.stopPropagation());
 
 const behaviours = { here, sentence, insects, process, trajectory, flow, jack, tools, social, loop, film };
 
