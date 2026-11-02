@@ -6,7 +6,7 @@ Open `index.html` in Chrome (works offline), press **F** for full screen.
 
 - Next: → / ↓ / PageDown / Space / Enter / click. Back: ← / ↑ / PageUp.
 - Slide 2 waits: the first press draws the rings around you, are, here, one by one, overlapping, in about 1.1 seconds (`draw` and `stagger` in the `here` object; before: 550 ms each with no overlap, 2 seconds), and the next moves on.
-- Slide 3 draws itself on arrival: "how" is already there, then each line leads to the next word, in about 2 seconds. A press mid-way completes it, the next moves on. `speed` (was 3.2), `wordIn` (was 120) and `start` (was 300) in the `sentence` object set the pace.
+- Slide 3 draws itself on arrival: "how" is already there, then each line leads to the next word, in about 1 second. A press mid-way completes it, the next moves on. `speed`, `wordIn` and `start` in the `sentence` object set the pace (2 seconds was 6.4 / 60 / 150; 4 seconds was 3.2 / 120 / 300).
 - Slide 5: "Specialization is for insects." enters word by word on arrival, 110 ms apart. Slide 8: on arrival the strike draws left to right, then "the process" writes itself letter by letter, 38 ms apart. Both timings are in the `reveal` lines.
 - Slide 10 starts with no arrows. The first press draws the short black arrow, the second the long one, black, a 0.2 second pause, then orange; each stays. The next moves on. Timings are in `presses` in the `trajectory` object.
 - Slide 12 (Level 1) draws its arrow on arrival: black, a 0.2 second pause, then orange. Timings are in `steps` in the `level1` object.
