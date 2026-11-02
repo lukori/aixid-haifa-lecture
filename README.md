@@ -17,4 +17,4 @@ Open `index.html` in Chrome (works offline), press **F** for full screen.
 - Links on slides 25, 28 and 29 open in a new tab and need internet. On 28 and 29 a click on an image opens its link too, so on 28, where the image fills the slide, move on with the keyboard or clicker. Closing the tab returns to the same slide; full screen may need F again.
 - `#N` in the address opens slide N.
 
-`assets/` holds the deck's original images and videos. The film on slide 27 is the copy embedded in the pptx, not a YouTube stream.
+`assets/` holds the deck's original images and videos. The film on slide 27 comes from the copy embedded in the pptx, not a YouTube stream; it was re-encoded (keyframe every 2 seconds, no B-frames) after one report of audio playing over a frozen first frame, which did not reproduce in testing.
