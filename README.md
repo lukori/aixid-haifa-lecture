@@ -5,7 +5,7 @@ A 15-minute talk by Luka Or (Haifa, 3.11.26), converted from `Luka or_AIxID_e.pp
 Open `index.html` in Chrome (works offline), press **F** for full screen.
 
 - Next: → / ↓ / PageDown / Space / Enter / click. Back: ← / ↑ / PageUp.
-- Slide 1 has the HIT and AIxID logos at the bottom, lined up with the left and right edges of the letter grid, on a shared bottom line.
+- Slide 1 has the HIT and AIxID logos at the bottom, lined up with the left and right edges of the letter grid, on a shared bottom line. The whole composition is centred: 2.9% of the slide width further left than in the pptx, with an extra background copy underneath so the right edge stays covered.
 - Slide 2 waits: the first press draws the rings around you, are, here, one by one, overlapping, in about 1.1 seconds (`draw` and `stagger` in the `here` object; before: 550 ms each with no overlap, 2 seconds), and the next moves on.
 - Slide 3 draws itself on arrival: "how" is already there, then each line leads to the next word, in about 1 second. A press mid-way completes it, the next moves on. `speed`, `wordIn` and `start` in the `sentence` object set the pace (2 seconds was 6.4 / 60 / 150; 4 seconds was 3.2 / 120 / 300).
 - Slide 5: "Specialization is for insects." enters word by word on arrival, 110 ms apart. Slide 8: on arrival the strike draws left to right, then "the process" writes itself letter by letter, 38 ms apart. Both timings are in the `reveal` lines.
