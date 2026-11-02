@@ -196,7 +196,7 @@
   <div class="t big30" style="left:9%;top:25.34%;width:82%;height:49.78%"><p>these are tools</p></div>
 </section>
 
-<!-- 12: Level 1, on arrival the arrow draws, black then orange -->
+<!-- 12: Level 1, the illustration with its arrow, no animation -->
 <section class="slide main drawn" id="level1">
   <div class="sub">you do - you learn</div>
   <div class="pic" style="left:7.11%;top:10.87%;width:85.78%;height:85.78%">
@@ -465,14 +465,6 @@ const trajectory = {
   leave() { this.pressed = 0; this.draw.reset(); },
 };
 
-/* ---------- 12: Level 1 draws its arrow on arrival, same principle ---------- */
-const level1 = {
-  draw: drawing('level1'),
-  steps: [[null, 150], ['#l-hop', 300, 'cubic-bezier(.6,0,1,1)'], [null, 200], ['#l-launch', 170, 'cubic-bezier(0,0,.4,1)'], ['.l-launch-head', 70, 'ease-out']],
-  enter() { this.draw.reset(); this.draw.play(this.steps); },
-  leave() { this.draw.reset(); },
-};
-
 /* ---------- 16: starts with the first item; each press shows the next with no animation, then one more draws the arrow ---------- */
 const flow = {
   items: [...document.querySelectorAll('#flow .step')],
@@ -624,7 +616,7 @@ const film = {
   leave() { filmVideo.pause(); },
 };
 
-const behaviours = { here, sentence, insects, process, trajectory, level1, flow, jack, tools, social, loop, film };
+const behaviours = { here, sentence, insects, process, trajectory, flow, jack, tools, social, loop, film };
 
 function go(n) {
   n = Math.max(0, Math.min(slides.length - 1, n));
