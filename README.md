@@ -21,4 +21,6 @@ Open `index.html` in Chrome (works offline), press **F** for full screen.
 - An image that fails to load tries again up to 5 times, because GitHub Pages sometimes answers 503.
 - `#N` in the address opens slide N.
 
+Backups, kept in `backup/` and not published: `AIxID_offline/` (`index.html` with `assets/`, the same deck, opens by dragging into Chrome with no internet) and `AIxID_backup.pptx` (41 slides, one image per press, with both videos embedded and the links as click areas; no motion on the drawn parts). Both are copies of tag `checkpoint-lecture-final`, so a later change to the deck has to be copied or rebuilt.
+
 `assets/` holds the deck's original images and videos. The film on slide 32 comes from the copy embedded in the pptx, not a YouTube stream; it was re-encoded (keyframe every 2 seconds, no B-frames) after one report of audio playing over a frozen first frame, which did not reproduce in testing.
