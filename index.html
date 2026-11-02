@@ -23,6 +23,9 @@
              width: calc(100% / (1 - var(--l) - var(--r))); height: calc(100% / (1 - var(--t) - var(--b)));
              left: calc(-100% * var(--l) / (1 - var(--l) - var(--r))); top: calc(-100% * var(--t) / (1 - var(--t) - var(--b))); }
   .pic video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .pic svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  #here path { fill: none; stroke: #e5381f; stroke-width: 5; stroke-dasharray: 1 1; }
 
   /* text box, vertically centered like the deck's title placeholder */
   .t { position: absolute; display: flex; flex-direction: column; justify-content: center; text-align: center; }
@@ -59,12 +62,19 @@
 <section class="slide main">
   <div class="pic" style="left:.06%;top:.2%;width:100%;height:99.22%"><img src="assets/image2.jpg" alt=""></div>
   <div class="pic" style="left:-5.51%;top:-3.17%;width:100%;height:99.22%"><img src="assets/image2.jpg" alt=""></div>
-  <div class="pic" style="left:3.06%;top:.55%;width:100%;height:100%;--t:.0693;--b:-.0693"><img src="assets/image3.png" alt=""></div>
+  <div class="pic" style="left:3.06%;top:.55%;width:100%;height:100%;--t:.0693;--b:-.0693"><img src="assets/image3_letters.png" alt=""></div>
 </section>
 
-<!-- 2 -->
-<section class="slide main">
-  <div class="pic" style="left:0;top:-1.58%;width:100%;height:100%"><img src="assets/image3.png" alt=""></div>
+<!-- 2: a press draws the rings, in reading order: you, are, here -->
+<section class="slide main" id="here">
+  <div class="pic" style="left:0;top:-1.58%;width:100%;height:100%">
+    <img src="assets/image3_letters.png" alt="">
+    <svg viewBox="0 0 2048 1152">
+      <path pathLength="1" d="M634.1 382.5H821.5A39.5 39.5 0 0 1 821.5 461.5H634.1A39.5 39.5 0 0 1 634.1 382.5Z"/>
+      <path pathLength="1" d="M946.85 528.24A39.8 39.8 0 0 1 1003.15 471.96L1184.65 653.56A39.8 39.8 0 0 1 1128.35 709.84Z"/>
+      <path pathLength="1" d="M1026.05 413A39.7 39.7 0 0 1 1105.45 413V684.2A39.7 39.7 0 0 1 1026.05 684.2Z"/>
+    </svg>
+  </div>
 </section>
 
 <!-- 3 -->
@@ -246,6 +256,33 @@ document.querySelectorAll('.slide.main').forEach(s => s.prepend(chrome.content.c
 let cur = 0;
 document.querySelectorAll('.pic img').forEach(i => i.decode().catch(() => {}));   // no hitch on first show
 
+/* ---------- 2: first press draws you → are → here, next press moves on ---------- */
+const here = {
+  rings: [...document.querySelectorAll('#here path')],
+  draw: 750,      // ms to draw each ring
+  gap: 200,       // ms between rings
+  timers: [], started: false,
+  enter() { this.reset(); },
+  next() {
+    if (this.started) return false;
+    this.started = true;
+    this.rings.forEach((ring, i) => this.timers.push(setTimeout(() => {
+      ring.style.visibility = 'visible';
+      ring.style.transition = `stroke-dashoffset ${this.draw}ms cubic-bezier(.5,0,.2,1)`;
+      ring.style.strokeDashoffset = 0;
+    }, i * (this.draw + this.gap))));
+    return true;
+  },
+  reset() {
+    this.timers.forEach(clearTimeout); this.timers = []; this.started = false;
+    this.rings.forEach(ring => {
+      ring.style.transition = 'none'; ring.style.strokeDashoffset = 1; ring.style.visibility = 'hidden';
+      ring.getBoundingClientRect();   // apply the reset before the next draw starts
+    });
+  },
+  leave() { this.reset(); },
+};
+
 /* ---------- 23: plays and loops on its own, silently ---------- */
 const loopVideo = document.querySelector('#loop video');
 const loop = {
@@ -269,7 +306,7 @@ const film = {
   leave() { filmVideo.pause(); },
 };
 
-const behaviours = { loop, film };
+const behaviours = { here, loop, film };
 
 function go(n) {
   n = Math.max(0, Math.min(slides.length - 1, n));
